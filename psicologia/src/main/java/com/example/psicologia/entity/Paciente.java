@@ -18,7 +18,8 @@ public class Paciente implements Serializable {
     private String nome;
     private String dataNascimento;
     private String cpf;
-    private String genero;
+    @OneToOne
+    private Genero genero;
     private String endereco;
     private String email;
     private String cidade;
@@ -31,7 +32,7 @@ public class Paciente implements Serializable {
                     String nome,
                     String dataNascimento,
                     String cpf,
-                    String genero,
+                    Genero genero,
                     String endereco,
                     String email,
                     String cidade,
@@ -81,11 +82,11 @@ public class Paciente implements Serializable {
         this.cpf = cpf;
     }
 
-    public String getGenero() {
+    public Genero getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
 
