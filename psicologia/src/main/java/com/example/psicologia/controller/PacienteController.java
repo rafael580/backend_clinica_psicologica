@@ -32,16 +32,20 @@ public class PacienteController {
         return ResponseEntity.ok().body(pacienteService.pegarUm(id));
     }
 
+    @PostMapping
+    public ResponseEntity<Paciente> criarUmPaciente(@RequestBody Paciente paciente){
+        return ResponseEntity.ok().body(pacienteService.criarPaciente(paciente));
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> atualizarUmPaciente(@PathVariable Long id,@RequestBody Paciente paciente){
+        return ResponseEntity.ok().body(pacienteService.atualizarUmPaciente(id,paciente));
 
-
-
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarPaciente(@PathVariable   Long id){
         pacienteService.deletarPaciente(id);
         return  ResponseEntity.noContent().build();
     }
-
-
 }

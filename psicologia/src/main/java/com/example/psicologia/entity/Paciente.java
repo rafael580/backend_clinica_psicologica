@@ -3,6 +3,7 @@ package com.example.psicologia.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -18,12 +19,12 @@ public class Paciente implements Serializable {
     private Long id;
     @NotNull(message = "nome nao pode ser nulo")
     private String nome;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String cpf;
     private String endereco;
     private String email;
     private String cidade;
-    private String municipio;
+    private String estado;
     private String telefone;
     @OneToOne
     private Genero genero;
@@ -36,13 +37,13 @@ public class Paciente implements Serializable {
 
     public Paciente(Long id,
                     String nome,
-                    String dataNascimento,
+                    LocalDate dataNascimento,
                     String cpf,
                     Genero genero,
                     String endereco,
                     String email,
                     String cidade,
-                    String municipio,
+                    String estado,
                     String telefone) {
         this.id = id;
         this.nome = nome;
@@ -52,7 +53,7 @@ public class Paciente implements Serializable {
         this.endereco = endereco;
         this.email = email;
         this.cidade = cidade;
-        this.municipio = municipio;
+        this.estado = estado;
         this.telefone = telefone;
     }
 
@@ -72,11 +73,11 @@ public class Paciente implements Serializable {
         this.nome = nome;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -120,12 +121,12 @@ public class Paciente implements Serializable {
         this.cidade = cidade;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public String getTelefone() {
