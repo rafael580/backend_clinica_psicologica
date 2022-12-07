@@ -1,5 +1,6 @@
 package com.example.psicologia.controller;
 
+import com.example.psicologia.dto.DescricaoUpdateDTO;
 import com.example.psicologia.entity.Sessao;
 import com.example.psicologia.entity.Status;
 import com.example.psicologia.repository.StatusRepository;
@@ -41,7 +42,7 @@ public class SessaoController {
     @PutMapping ("/{id}/{idStatus}")
     public ResponseEntity<Sessao>  atualizarStatusDeUmaSessao(
             @PathVariable Long id,
-            @RequestBody String descricao,
+            @RequestBody DescricaoUpdateDTO descricao,
             @PathVariable Long idStatus){
         return ResponseEntity.ok().body(sessaoService.atualizarStatusDaSessao(id,descricao,idStatus));
     }

@@ -1,5 +1,6 @@
 package com.example.psicologia.service;
 
+import com.example.psicologia.dto.DescricaoUpdateDTO;
 import com.example.psicologia.entity.Sessao;
 import com.example.psicologia.entity.Status;
 import com.example.psicologia.entity.TipoSessao;
@@ -63,11 +64,11 @@ public class SessaoService {
         return sessaoRepository.save(sessao2);
     }
 
-    public Sessao atualizarStatusDaSessao(Long id,String descricao,Long idStatus){
+    public Sessao atualizarStatusDaSessao(Long id, DescricaoUpdateDTO descricao, Long idStatus){
         Optional<Status> status = statusRepository.findById(idStatus);
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
         Sessao sessao2 = sessao1.orElse(null);
-        sessao2.setDescricao(descricao);
+        sessao2.setDescricao(descricao.getDescricao());
         sessao2.getStatus().clear();
         sessao2.addStatus(status.orElse(null));
         return sessaoRepository.save(sessao2);

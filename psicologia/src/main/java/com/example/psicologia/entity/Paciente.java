@@ -3,7 +3,9 @@ package com.example.psicologia.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "paciente")
@@ -18,14 +20,18 @@ public class Paciente implements Serializable {
     private String nome;
     private String dataNascimento;
     private String cpf;
-    @OneToOne
-    private Genero genero;
     private String endereco;
     private String email;
     private String cidade;
     private String municipio;
     private String telefone;
-
+    @OneToOne
+    private Genero genero;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "tb_paciente_sessao",
+            joinColumns = @JoinColumn(name = "paciente_id"),
+            inverseJoinColumns= @JoinColumn(name = "sessao_id"))
+    private Set<Sessao> sessaoSet = new HashSet<>();
     public Paciente(){}
 
     public Paciente(Long id,
@@ -128,6 +134,18 @@ public class Paciente implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public Set<Sessao> getSessaoSet() {
+        return sessaoSet;
+    }
+
+    public void setSessaoSet(Set<Sessao> sessaoSet) {
+        this.sessaoSet = sessaoSet;
+    }
+
+    public void addSessao(Sessao sessao){
+        this.getSessaoSet().add(sessao);
     }
 
     @Override

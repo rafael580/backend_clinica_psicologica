@@ -5,7 +5,7 @@ import com.example.psicologia.entity.Status;
 import com.example.psicologia.repository.SessaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,12 +14,12 @@ public class SessaoDashborasService {
 
     @Autowired
     private SessaoRepository sessaoRepository;
-
+    @Transactional(readOnly = true)
     public Integer totalDeSessoes(){
         List<Sessao>  sessao =  sessaoRepository.findAll();
         return sessao.size();
     }
-
+    @Transactional(readOnly = true)
     public Integer totalDeSessoesDia(){
         Integer count = 0 ;
         LocalDate l = LocalDate.now();
@@ -35,7 +35,7 @@ public class SessaoDashborasService {
         }
         return count;
     }
-
+    @Transactional(readOnly = true)
     public Integer totalSessoesMes(){
         Integer count = 0 ;
         LocalDate l = LocalDate.now();
@@ -55,7 +55,7 @@ public class SessaoDashborasService {
         }
         return count;
     }
-
+    @Transactional(readOnly = true)
     public Integer totalSessoesMesCanceladas(){
         Integer count = 0 ;
         LocalDate l = LocalDate.now();
@@ -75,7 +75,7 @@ public class SessaoDashborasService {
         }
         return count;
     }
-
+    @Transactional(readOnly = true)
     public Integer totalsessoesindividual(){
         Integer count = 0 ;
 
@@ -88,6 +88,7 @@ public class SessaoDashborasService {
         }
         return count;
     }
+    @Transactional(readOnly = true)
     public Integer totalsessoesdupla(){
         Integer count = 0 ;
 
@@ -100,6 +101,7 @@ public class SessaoDashborasService {
         }
         return count;
     }
+    @Transactional(readOnly = true)
     public Integer totalsessoesgrupo(){
         Integer count = 0 ;
 

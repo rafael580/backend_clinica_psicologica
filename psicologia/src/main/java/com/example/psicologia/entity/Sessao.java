@@ -28,6 +28,9 @@ public class Sessao implements Serializable {
             inverseJoinColumns= @JoinColumn(name = "status_id"))
     private Set<Status> status = new HashSet<>();
 
+    @ManyToMany(mappedBy = "sessaoSet")
+    private Set<Paciente> pacienteSet = new HashSet<>();
+
     public Sessao(){}
 
     public Sessao(Long id,
