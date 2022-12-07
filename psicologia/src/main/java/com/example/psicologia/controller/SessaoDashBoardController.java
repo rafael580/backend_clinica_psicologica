@@ -25,12 +25,12 @@ public class SessaoDashBoardController {
         return ResponseEntity.ok().body(sessaoDashborasService.totalDeSessoesDia());
     }
     @GetMapping("/sessoesmes")
-    public void sessoesmes(){
-
+    public ResponseEntity<Integer> sessoesmes(){
+        return ResponseEntity.ok().body(sessaoDashborasService.totalSessoesMes());
     }
     @GetMapping("/sessoesmescanceladas")
-    public void sessoesmescanceladas(){
-
+    public ResponseEntity<Integer> sessoesmescanceladas(){
+        return ResponseEntity.ok().body(sessaoDashborasService.totalSessoesMesCanceladas());
     }
     @GetMapping("/sessoesindividuaistotal")
     public void sessoesindividuaistotal(){

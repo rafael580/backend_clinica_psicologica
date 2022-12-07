@@ -35,6 +35,49 @@ public class SessaoDashborasService {
         }
         return count;
     }
+
+    public Integer totalSessoesMes(){
+        Integer count = 0 ;
+        LocalDate l = LocalDate.now();
+        List<Sessao>  sessao =  sessaoRepository.findAll();
+        for (Sessao s:
+                sessao) {
+            for (Status status:
+                    s.getStatus()) {
+                 Integer ano =   s.getDataAgendamento().getYear();
+                if(status.getNome().equals("agendado") &&
+                        s.getDataAgendamento().getMonth().equals(l.getMonth()) &&
+                        s.getDataAgendamento().getYear() == ano
+                ){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    public Integer totalSessoesMesCanceladas(){
+        Integer count = 0 ;
+        LocalDate l = LocalDate.now();
+        List<Sessao>  sessao =  sessaoRepository.findAll();
+        for (Sessao s:
+                sessao) {
+            for (Status status:
+                    s.getStatus()) {
+                Integer ano =   s.getDataAgendamento().getYear();
+                if(status.getNome().equals("cancelado") &&
+                        s.getDataAgendamento().getMonth().equals(l.getMonth()) &&
+                        s.getDataAgendamento().getYear() == ano
+                ){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    
+
 }
 
 

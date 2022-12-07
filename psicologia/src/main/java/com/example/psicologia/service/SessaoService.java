@@ -64,7 +64,7 @@ public class SessaoService {
     }
 
     public Sessao atualizarStatusDaSessao(Long id,String descricao,Long idStatus){
-        Optional<Status> status = statusRepository.findById(4L);
+        Optional<Status> status = statusRepository.findById(idStatus);
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
         Sessao sessao2 = sessao1.orElse(null);
         sessao2.setDescricao(descricao);
