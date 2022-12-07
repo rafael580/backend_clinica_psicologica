@@ -7,7 +7,11 @@ import com.example.psicologia.entity.TipoSessao;
 import com.example.psicologia.repository.SessaoRepository;
 import com.example.psicologia.repository.StatusRepository;
 import com.example.psicologia.repository.TipoSessaoRepository;
+import com.example.psicologia.service.exception.DataBaseException;
+import com.example.psicologia.service.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -33,12 +37,12 @@ public class SessaoService {
 
     public Sessao pegarUmaSessao(Long id){
         Optional<Sessao> ses = sessaoRepository.findById(id);
-        return ses.orElse(null);
+        return ses.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
     }
     public Sessao criarSessao(Sessao  sessao){
         Optional<Status> status = statusRepository.findById(1L);
         sessao.getStatus().clear();
-        sessao.addStatus(status.orElse(null));
+        sessao.addStatus(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
         return sessaoRepository.save(sessao);
     }
 
@@ -47,10 +51,10 @@ public class SessaoService {
         Optional<Status> status = statusRepository.findById(1L);
         // pegando tipo da sessao do banco de dados
         Optional<TipoSessao> tipoSessao = tipoSessaoRepository.findById(sessao.getTipoSessao().getId());
-        TipoSessao tipoSessao1 = tipoSessao.orElse(null);
+        TipoSessao tipoSessao1 = tipoSessao.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
         // buscando sessao pelo id
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
-        Sessao sessao2 = sessao1.orElse(null);
+        Sessao sessao2 = sessao1.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
         sessao2.setDataAgendamento(sessao.getDataAgendamento());
         sessao2.setDescricao(sessao.getDescricao());
         sessao2.setTemaSessao(sessao.getTemaSessao());
@@ -59,7 +63,7 @@ public class SessaoService {
         sessao2.getStatus().clear();
 
         Set<Status> statusSet = new HashSet<>();
-        statusSet.add(status.orElse(null));
+        statusSet.add(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
         sessao2.setStatus(statusSet);
         return sessaoRepository.save(sessao2);
     }
@@ -67,15 +71,22 @@ public class SessaoService {
     public Sessao atualizarStatusDaSessao(Long id, DescricaoUpdateDTO descricao, Long idStatus){
         Optional<Status> status = statusRepository.findById(idStatus);
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
-        Sessao sessao2 = sessao1.orElse(null);
+        Sessao sessao2 = sessao1.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
         sessao2.setDescricao(descricao.getDescricao());
         sessao2.getStatus().clear();
-        sessao2.addStatus(status.orElse(null));
+        sessao2.addStatus(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
         return sessaoRepository.save(sessao2);
     }
 
     public void deletarSessao(Long id){
-        sessaoRepository.deleteById(id);
+        try {
+            sessaoRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw new ResourceNotFoundException("Id not found" + id);
+        }
+        catch (DataIntegrityViolationException e){
+            throw new DataBaseException("Integrety violation");
+        }
     }
 
 }

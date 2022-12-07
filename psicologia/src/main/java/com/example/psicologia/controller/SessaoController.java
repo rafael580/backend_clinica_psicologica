@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,19 +31,20 @@ public class SessaoController {
     }
 
     @PostMapping
-    public ResponseEntity<Sessao>  criarUmaSessao(@RequestBody Sessao sessao){
+    public ResponseEntity<Sessao>  criarUmaSessao(@Valid  @RequestBody Sessao sessao){
         return ResponseEntity.ok().body(sessaoService.criarSessao(sessao));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Sessao>  atualizarUmaSessao(@PathVariable Long id,@RequestBody Sessao sessao){
+    public ResponseEntity<Sessao>  atualizarUmaSessao(@PathVariable Long id,
+                                                      @Valid @RequestBody Sessao sessao){
         return ResponseEntity.ok().body(sessaoService.atualizarSessao(id,sessao));
     }
 
     @PutMapping ("/{id}/{idStatus}")
     public ResponseEntity<Sessao>  atualizarStatusDeUmaSessao(
             @PathVariable Long id,
-            @RequestBody DescricaoUpdateDTO descricao,
+            @Valid @RequestBody DescricaoUpdateDTO descricao,
             @PathVariable Long idStatus){
         return ResponseEntity.ok().body(sessaoService.atualizarStatusDaSessao(id,descricao,idStatus));
     }
