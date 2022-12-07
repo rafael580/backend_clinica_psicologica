@@ -11,3 +11,6 @@ insert into tiposessao (nome) values ('dupla');
 
 insert into  genero (nome) values  ('masculino');
 insert into  genero (nome) values  ('feminino');
+
+
+insert into sessao (duracao) values ("00-20")

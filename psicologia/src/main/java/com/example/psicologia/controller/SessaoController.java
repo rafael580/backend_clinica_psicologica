@@ -1,19 +1,56 @@
 package com.example.psicologia.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.psicologia.entity.Sessao;
+import com.example.psicologia.entity.Status;
+import com.example.psicologia.repository.StatusRepository;
+import com.example.psicologia.service.SessaoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("/sessao")
 public class SessaoController {
 
+    @Autowired
+    private SessaoService sessaoService;
+
 
     @GetMapping
-    public LocalDate data(){
-        LocalDate localDate  =   LocalDate.now();
-        return localDate;
+    public ResponseEntity<List<Sessao>> listarDeTodasSessoes(){
+       return ResponseEntity.ok().body(sessaoService.todasSessoes());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Sessao> umaSessao(@PathVariable Long id){
+        return ResponseEntity.ok().body(sessaoService.pegarUmaSessao(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<Sessao>  criarUmaSessao(@RequestBody Sessao sessao){
+        return ResponseEntity.ok().body(sessaoService.criarSessao(sessao));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Sessao>  atualizarUmaSessao(@PathVariable Long id,@RequestBody Sessao sessao){
+        return ResponseEntity.ok().body(sessaoService.atualizarSessao(id,sessao));
+    }
+
+    @PutMapping ("/{id}/{idStatus}")
+    public ResponseEntity<Sessao>  atualizarStatusDeUmaSessao(
+            @PathVariable Long id,
+            @RequestBody String descricao,
+            @PathVariable Long idStatus){
+        return ResponseEntity.ok().body(sessaoService.atualizarStatusDaSessao(id,descricao,idStatus));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarSessao(@PathVariable Long id){
+        sessaoService.deletarSessao(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
 }

@@ -1,7 +1,6 @@
 package com.example.psicologia.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -17,11 +16,10 @@ public class Sessao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull(message = "nome nao pode ser nulo")
-    private String nome;
     private LocalDate dataAgendamento;
     private String temaSessao;
     private String duracao;
+    private String descricao;
     @OneToOne
     private TipoSessao tipoSessao;
     @ManyToMany(fetch = FetchType.EAGER)
@@ -33,17 +31,16 @@ public class Sessao implements Serializable {
     public Sessao(){}
 
     public Sessao(Long id,
-                  String nome,
                   LocalDate dataAgendamento,
                   String temaSessao,
                   String duracao,
-                  TipoSessao tipoSessao
-               ) {
+                  String descricao,
+                  TipoSessao tipoSessao) {
         this.id = id;
-        this.nome = nome;
         this.dataAgendamento = dataAgendamento;
         this.temaSessao = temaSessao;
         this.duracao = duracao;
+        this.descricao = descricao;
         this.tipoSessao = tipoSessao;
     }
 
@@ -55,12 +52,12 @@ public class Sessao implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public LocalDate getDataAgendamento() {
