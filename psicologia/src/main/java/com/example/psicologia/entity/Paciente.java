@@ -27,7 +27,7 @@ public class Paciente implements Serializable {
     private String telefone;
     @OneToOne
     private Genero genero;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "tb_paciente_sessao",
             joinColumns = @JoinColumn(name = "paciente_id"),
             inverseJoinColumns= @JoinColumn(name = "sessao_id"))

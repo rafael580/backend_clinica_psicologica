@@ -17,4 +17,14 @@ public class PacienteService {
         return pacienteRepository.findAll();
     }
 
+    public Paciente pegarUm(Long id){
+
+        return null;
+    }
+
+    public void deletarPaciente(Long id){
+        pacienteRepository.deleteById(id);
+    }
+
+
 }

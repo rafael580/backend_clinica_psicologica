@@ -18,4 +18,3 @@ insert into sessao (duracao) values ("00-20");
 insert into paciente (nome) values ("porto alehre");
 
 insert into tb_paciente_sessao (paciente_id, sessao_id) values (1,1);
-insert into tb_paciente_sessao (paciente_id, sessao_id) values (1,2);

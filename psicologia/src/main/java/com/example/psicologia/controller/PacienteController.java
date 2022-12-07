@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +26,22 @@ public class PacienteController {
     public Page<Paciente> todos(PacienteFilter pacienteFilter, Pageable pageable){
         return pacienteRepository.filtar(pacienteFilter,pageable);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> pegarUmPaciente(@PathVariable Long id){
+        return ResponseEntity.ok().body(pacienteService.pegarUm(id));
+    }
+
+
+
+
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPaciente(@PathVariable   Long id){
+        pacienteService.deletarPaciente(id);
+        return  ResponseEntity.noContent().build();
+    }
+
 
 }
