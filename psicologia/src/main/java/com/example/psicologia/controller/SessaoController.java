@@ -2,8 +2,6 @@ package com.example.psicologia.controller;
 
 import com.example.psicologia.dto.DescricaoUpdateDTO;
 import com.example.psicologia.entity.Sessao;
-import com.example.psicologia.entity.Status;
-import com.example.psicologia.repository.StatusRepository;
 import com.example.psicologia.service.SessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
