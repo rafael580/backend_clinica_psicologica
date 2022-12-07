@@ -10,11 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Dashborad")
 public class SessaoDashBoardController {
-
-
+    
     @Autowired
     private SessaoDashborasService sessaoDashborasService;
-
 
     @GetMapping("/totalDeSessoes")
     public ResponseEntity<Integer> todasSessoes(){
@@ -33,17 +31,15 @@ public class SessaoDashBoardController {
         return ResponseEntity.ok().body(sessaoDashborasService.totalSessoesMesCanceladas());
     }
     @GetMapping("/sessoesindividuaistotal")
-    public void sessoesindividuaistotal(){
-
+    public ResponseEntity<Integer> sessoesindividuaistotal(){
+        return ResponseEntity.ok().body(sessaoDashborasService.totalsessoesindividual());
     }
     @GetMapping("/sessoesgrupototal")
-    public void sessoesgrupototal(){
-
+    public ResponseEntity<Integer>sessoesgrupototal(){
+        return ResponseEntity.ok().body(sessaoDashborasService.totalsessoesgrupo());
     }
     @GetMapping("/sessoesduplatotal")
-    public void sessoesduplatotal(){
-
+    public ResponseEntity<Integer> sessoesduplatotal(){
+        return ResponseEntity.ok().body(sessaoDashborasService.totalsessoesdupla());
     }
-
-
 }

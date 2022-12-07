@@ -76,8 +76,42 @@ public class SessaoDashborasService {
         return count;
     }
 
-    
+    public Integer totalsessoesindividual(){
+        Integer count = 0 ;
 
+        List<Sessao>  sessao =  sessaoRepository.findAll();
+        for (Sessao s:
+                sessao) {
+           if(s.getTipoSessao().getNome().equals("individual")){
+               count++;
+           }
+        }
+        return count;
+    }
+    public Integer totalsessoesdupla(){
+        Integer count = 0 ;
+
+        List<Sessao>  sessao =  sessaoRepository.findAll();
+        for (Sessao s:
+                sessao) {
+            if(s.getTipoSessao().getNome().equals("dupla")){
+                count++;
+            }
+        }
+        return count;
+    }
+    public Integer totalsessoesgrupo(){
+        Integer count = 0 ;
+
+        List<Sessao>  sessao =  sessaoRepository.findAll();
+        for (Sessao s:
+                sessao) {
+            if(s.getTipoSessao().getNome().equals("grupo")){
+                count++;
+            }
+        }
+        return count;
+    }
 }
 
 
