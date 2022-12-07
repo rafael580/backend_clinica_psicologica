@@ -1,9 +1,11 @@
 package com.example.psicologia.service;
 
 import com.example.psicologia.dto.DescricaoUpdateDTO;
+import com.example.psicologia.entity.Paciente;
 import com.example.psicologia.entity.Sessao;
 import com.example.psicologia.entity.Status;
 import com.example.psicologia.entity.TipoSessao;
+import com.example.psicologia.repository.PacienteRepository;
 import com.example.psicologia.repository.SessaoRepository;
 import com.example.psicologia.repository.StatusRepository;
 import com.example.psicologia.repository.TipoSessaoRepository;
@@ -23,6 +25,9 @@ import java.util.Set;
 public class SessaoService {
 
     @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
     private SessaoRepository sessaoRepository;
 
     @Autowired
@@ -39,11 +44,17 @@ public class SessaoService {
         Optional<Sessao> ses = sessaoRepository.findById(id);
         return ses.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
     }
-    public Sessao criarSessao(Sessao  sessao){
+    public Sessao criarSessao(String cpf , Sessao  sessao){
+
+        Paciente paciente = pacienteRepository.findByCpf(cpf);
+        System.out.println(paciente);
         Optional<Status> status = statusRepository.findById(1L);
         sessao.getStatus().clear();
         sessao.addStatus(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
-        return sessaoRepository.save(sessao);
+        sessao = sessaoRepository.save(sessao);
+        paciente.addSessao(sessao);
+        pacienteRepository.save(paciente);
+        return sessao;
     }
 
     public Sessao atualizarSessao(Long id,Sessao sessao){

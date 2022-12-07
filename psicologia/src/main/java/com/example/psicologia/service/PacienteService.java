@@ -51,7 +51,6 @@ public class PacienteService {
         return pacienteRepository.save(paciente2);
     }
 
-
     public void deletarPaciente(Long id){
         pacienteRepository.deleteById(id);
     }

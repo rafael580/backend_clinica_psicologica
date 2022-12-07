@@ -28,9 +28,9 @@ public class SessaoController {
         return ResponseEntity.ok().body(sessaoService.pegarUmaSessao(id));
     }
 
-    @PostMapping
-    public ResponseEntity<Sessao>  criarUmaSessao(@Valid  @RequestBody Sessao sessao){
-        return ResponseEntity.ok().body(sessaoService.criarSessao(sessao));
+    @PostMapping("/criarsessao/{cpf}")
+    public ResponseEntity<Sessao>  criarUmaSessao(@PathVariable String cpf,@Valid  @RequestBody Sessao sessao){
+        return ResponseEntity.ok().body(sessaoService.criarSessao(cpf,sessao));
     }
 
     @PutMapping("/{id}")
