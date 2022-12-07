@@ -15,6 +15,7 @@ insert into  genero (nome) values  ('feminino');
 
 insert into sessao (duracao) values ("00-20");
 
-insert into paciente (nome) values ("porto alehre");
+insert into paciente (nome) values ("rafael");
+insert into paciente (nome) values ("joao");
 
 insert into tb_paciente_sessao (paciente_id, sessao_id) values (1,1);

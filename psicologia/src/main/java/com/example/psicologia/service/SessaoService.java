@@ -47,7 +47,9 @@ public class SessaoService {
     public Sessao criarSessao(String cpf , Sessao  sessao){
 
         Paciente paciente = pacienteRepository.findByCpf(cpf);
-        System.out.println(paciente);
+        if(paciente==null){
+            throw new ResourceNotFoundException("cpf Not exist");
+        }
         Optional<Status> status = statusRepository.findById(1L);
         sessao.getStatus().clear();
         sessao.addStatus(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
@@ -58,6 +60,17 @@ public class SessaoService {
     }
 
     public Sessao atualizarSessao(Long id,Sessao sessao){
+
+        Paciente pacienteDaSessao = pacienteRepository.findByCpf("1");
+        Paciente pacienteDestinoSessao = pacienteRepository.findByCpf("2");
+
+        if(pacienteDaSessao==null){
+            throw new ResourceNotFoundException("cpf of session Not exist");
+        }
+        if(pacienteDestinoSessao==null){
+            throw new ResourceNotFoundException("cpf destino Not exist");
+        }
+
         // pegando status do banco de dados
         Optional<Status> status = statusRepository.findById(1L);
         // pegando tipo da sessao do banco de dados
@@ -66,6 +79,7 @@ public class SessaoService {
         // buscando sessao pelo id
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
         Sessao sessao2 = sessao1.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
+
         sessao2.setDataAgendamento(sessao.getDataAgendamento());
         sessao2.setDescricao(sessao.getDescricao());
         sessao2.setTemaSessao(sessao.getTemaSessao());
@@ -76,7 +90,15 @@ public class SessaoService {
         Set<Status> statusSet = new HashSet<>();
         statusSet.add(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
         sessao2.setStatus(statusSet);
+
+        pacienteDaSessao.getSessaoSet().remove(sessao);
+
+        //colocando a sessao atualizada na sessao de destino
+        pacienteDestinoSessao.addSessao(sessao);
+        pacienteRepository.save(pacienteDestinoSessao);
+
         return sessaoRepository.save(sessao2);
+
     }
 
     public Sessao atualizarStatusDaSessao(Long id, DescricaoUpdateDTO descricao, Long idStatus){

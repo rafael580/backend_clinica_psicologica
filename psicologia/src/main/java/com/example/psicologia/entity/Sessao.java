@@ -61,6 +61,9 @@ public class Sessao implements Serializable {
         return pacienteSet;
     }
 
+    public void setPacienteSet(Set<Paciente> pacienteSet) {
+        this.pacienteSet = pacienteSet;
+    }
 
     public String getDescricao() {
         return descricao;
