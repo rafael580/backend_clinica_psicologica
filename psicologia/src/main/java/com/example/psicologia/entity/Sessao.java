@@ -1,5 +1,7 @@
 package com.example.psicologia.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -27,7 +29,7 @@ public class Sessao implements Serializable {
             joinColumns = @JoinColumn(name = "sessao_id"),
             inverseJoinColumns= @JoinColumn(name = "status_id"))
     private Set<Status> status = new HashSet<>();
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "sessaoSet")
     private Set<Paciente> pacienteSet = new HashSet<>();
 
@@ -54,6 +56,11 @@ public class Sessao implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public Set<Paciente> getPacienteSet() {
+        return pacienteSet;
+    }
+
 
     public String getDescricao() {
         return descricao;

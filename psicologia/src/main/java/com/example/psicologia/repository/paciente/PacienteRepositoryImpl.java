@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -18,13 +19,11 @@ import java.util.List;
 
 public class PacienteRepositoryImpl implements PacienteRepositoryQuery {
 
-
     @PersistenceContext
     private EntityManager manager;
 
-
     @Override
-    public Page<Paciente> filtar(PacienteFilter pacienteFilter , Pageable pageable) {
+    public Page<Paciente> filtar(PacienteFilter pacienteFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Paciente> criteria = builder.createQuery(Paciente.class);
         Root<Paciente> root = criteria.from(Paciente.class);
