@@ -61,8 +61,9 @@ public class SessaoService {
 
     public Sessao atualizarSessao(Long id,Sessao sessao){
 
+
         Paciente pacienteDaSessao = pacienteRepository.findByCpf("1");
-        Paciente pacienteDestinoSessao = pacienteRepository.findByCpf("2");
+        Paciente pacienteDestinoSessao = pacienteRepository.findByCpf("1");
 
         if(pacienteDaSessao==null){
             throw new ResourceNotFoundException("cpf of session Not exist");
@@ -78,7 +79,12 @@ public class SessaoService {
         TipoSessao tipoSessao1 = tipoSessao.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
         // buscando sessao pelo id
         Optional<Sessao> sessao1 = sessaoRepository.findById(id);
+
         Sessao sessao2 = sessao1.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
+
+//        if(pacienteDaSessao.getSessaoSet().contains(sessao2)) {
+//        	pacienteDaSessao.removeSeccao(sessao2);
+//        }
 
         sessao2.setDataAgendamento(sessao.getDataAgendamento());
         sessao2.setDescricao(sessao.getDescricao());
@@ -91,10 +97,13 @@ public class SessaoService {
         statusSet.add(status.orElseThrow(()-> new ResourceNotFoundException("Entity not found")));
         sessao2.setStatus(statusSet);
 
-        pacienteDaSessao.getSessaoSet().remove(sessao);
+        pacienteDaSessao.getSessaoSet().remove(sessao2);
+
+        //pacienteRepository.save(pacienteDaSessao);
+
 
         //colocando a sessao atualizada na sessao de destino
-        pacienteDestinoSessao.addSessao(sessao);
+        pacienteDestinoSessao.addSessao(sessao2);
         pacienteRepository.save(pacienteDestinoSessao);
 
         return sessaoRepository.save(sessao2);
