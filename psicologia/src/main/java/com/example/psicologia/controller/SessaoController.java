@@ -33,10 +33,12 @@ public class SessaoController {
         return ResponseEntity.ok().body(sessaoService.criarSessao(cpf,sessao));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/{pacienteAtual}/{pacienteDestino}")
     public ResponseEntity<Sessao>  atualizarUmaSessao(@PathVariable Long id,
+                                                      @PathVariable String pacienteAtual,
+                                                      @PathVariable String pacienteDestino,
                                                       @Valid @RequestBody Sessao sessao){
-        return ResponseEntity.ok().body(sessaoService.atualizarSessao(id,sessao));
+        return ResponseEntity.ok().body(sessaoService.atualizarSessao(id,sessao,pacienteAtual,pacienteDestino));
     }
 
     @PutMapping ("/{id}/{idStatus}")

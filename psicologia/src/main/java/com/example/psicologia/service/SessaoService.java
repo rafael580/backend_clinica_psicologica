@@ -59,11 +59,11 @@ public class SessaoService {
         return sessao;
     }
 
-    public Sessao atualizarSessao(Long id,Sessao sessao){
+    public Sessao atualizarSessao(Long id,Sessao sessao,String pacienteAtual,String pacienteDestino){
 
 
-        Paciente pacienteDaSessao = pacienteRepository.findByCpf("1");
-        Paciente pacienteDestinoSessao = pacienteRepository.findByCpf("1");
+        Paciente pacienteDaSessao = pacienteRepository.findByCpf(pacienteAtual);
+        Paciente pacienteDestinoSessao = pacienteRepository.findByCpf(pacienteDestino);
 
         if(pacienteDaSessao==null){
             throw new ResourceNotFoundException("cpf of session Not exist");
