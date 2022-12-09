@@ -82,10 +82,6 @@ public class SessaoService {
 
         Sessao sessao2 = sessao1.orElseThrow(()-> new ResourceNotFoundException("Entity not found"));
 
-//        if(pacienteDaSessao.getSessaoSet().contains(sessao2)) {
-//        	pacienteDaSessao.removeSeccao(sessao2);
-//        }
-
         sessao2.setDataAgendamento(sessao.getDataAgendamento());
         sessao2.setDescricao(sessao.getDescricao());
         sessao2.setTemaSessao(sessao.getTemaSessao());
@@ -99,10 +95,6 @@ public class SessaoService {
 
         pacienteDaSessao.getSessaoSet().remove(sessao2);
 
-        //pacienteRepository.save(pacienteDaSessao);
-
-
-        //colocando a sessao atualizada na sessao de destino
         pacienteDestinoSessao.addSessao(sessao2);
         pacienteRepository.save(pacienteDestinoSessao);
 
