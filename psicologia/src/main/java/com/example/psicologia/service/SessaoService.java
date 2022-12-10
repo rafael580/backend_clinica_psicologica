@@ -94,7 +94,7 @@ public class SessaoService {
         sessao2.setStatus(statusSet);
 
         pacienteDaSessao.getSessaoSet().remove(sessao2);
-
+        pacienteRepository.save(pacienteDaSessao);
         pacienteDestinoSessao.addSessao(sessao2);
         pacienteRepository.save(pacienteDestinoSessao);
 
