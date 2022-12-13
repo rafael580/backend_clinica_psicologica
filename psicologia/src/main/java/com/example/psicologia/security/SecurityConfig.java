@@ -18,6 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests()
                 .antMatchers(HttpMethod.POST, "/usuario/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/usuario").permitAll()
+
+                // DASHBOARD
+
+
                 .antMatchers(HttpMethod.POST, "/usuario").permitAll()
                 .antMatchers(HttpMethod.PUT, "/usuario/id").permitAll()
                 .antMatchers(HttpMethod.DELETE, "/usuario/id").permitAll();
