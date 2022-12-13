@@ -16,15 +16,32 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // end point liberado
         httpSec.csrf().disable()
                 .authorizeHttpRequests()
-                .antMatchers(HttpMethod.POST, "/usuario/login").permitAll()
-                .antMatchers(HttpMethod.GET, "/usuario").permitAll()
 
                 // DASHBOARD
 
+                .antMatchers(HttpMethod.GET,"/Dashborad/totalDeSessoes").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesdia").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesmes").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesmescanceladas").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesindividuaistotal").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesgrupototal").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessoesduplatotal").permitAll()
 
-                .antMatchers(HttpMethod.POST, "/usuario").permitAll()
-                .antMatchers(HttpMethod.PUT, "/usuario/id").permitAll()
-                .antMatchers(HttpMethod.DELETE, "/usuario/id").permitAll();
+                // SESSAO
+
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessao").permitAll()
+                .antMatchers(HttpMethod.GET,"/Dashborad/sessao/{id}").permitAll()
+                .antMatchers(HttpMethod.POST,"/Dashborad/criarsessao/{cpf}").permitAll()
+                .antMatchers(HttpMethod.PUT,"/Dashborad/{id}/{pacienteAtual}/{pacienteDestino}").permitAll()
+                .antMatchers(HttpMethod.PUT,"/Dashborad/{id}/{idStatus}").permitAll()
+
+                // PACIENTE
+
+                .antMatchers(HttpMethod.GET,"/paciente").permitAll()
+                .antMatchers(HttpMethod.GET,"/paciente/{id}").permitAll()
+                .antMatchers(HttpMethod.POST,"/paciente").permitAll()
+                .antMatchers(HttpMethod.PUT,"/paciente/{id}").permitAll()
+                .antMatchers(HttpMethod.DELETE,"/paciente/{id}").permitAll();
 
 	}
 }
