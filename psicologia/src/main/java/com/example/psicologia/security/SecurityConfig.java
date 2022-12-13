@@ -29,11 +29,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // SESSAO
 
-                .antMatchers(HttpMethod.GET,"/Dashborad/sessao").permitAll()
-                .antMatchers(HttpMethod.GET,"/Dashborad/sessao/{id}").permitAll()
-                .antMatchers(HttpMethod.POST,"/Dashborad/criarsessao/{cpf}").permitAll()
-                .antMatchers(HttpMethod.PUT,"/Dashborad/{id}/{pacienteAtual}/{pacienteDestino}").permitAll()
-                .antMatchers(HttpMethod.PUT,"/Dashborad/{id}/{idStatus}").permitAll()
+                .antMatchers(HttpMethod.GET,"/sessao").permitAll()
+                .antMatchers(HttpMethod.GET,"/sessao/{id}").permitAll()
+                .antMatchers(HttpMethod.POST,"/sessao/criarsessao/{cpf}").permitAll()
+                .antMatchers(HttpMethod.PUT,"/sessao/{id}/{pacienteAtual}/{pacienteDestino}").permitAll()
+                .antMatchers(HttpMethod.PUT,"/sessao/{id}/{idStatus}").permitAll()
 
                 // PACIENTE
 
@@ -45,7 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // LOGIN
 
-                .antMatchers(HttpMethod.GET,"/login/{senha}").permitAll();
+                .antMatchers(HttpMethod.POST,"/login").permitAll()
+                .anyRequest().authenticated().and().cors();
+
+                httpSec.addFilterBefore(new SecurityFilter(), UsernamePasswordAuthenticationFilter.class);
 
 	}
 }

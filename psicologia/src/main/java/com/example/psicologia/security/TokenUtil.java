@@ -1,6 +1,5 @@
 package com.example.psicologia.security;
 
-
 import com.example.psicologia.entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -19,7 +18,7 @@ public class TokenUtil {
 
     private static final String HEADER = "Authorization";
     private static final String PREFIX = "Bearer ";
-    private static final long EXPIRATION = 12*60*60*1000; //12h
+    private static final long EXPIRATION = 12*60*60*1000;
     private static final String SECRET_KEY = "Minh@Senh@P@r@Acess@ar0sS3cutiry";
     private static final String EMISSOR = "DevNice";
 
@@ -62,7 +61,6 @@ public class TokenUtil {
         if (isSubjectValid(username) && isEmissorValid(issuer) && isExpirationValid(expira)) {
             return new UsernamePasswordAuthenticationToken(username, null, Collections.emptyList());
         }
-
         return null;
     }
 }
