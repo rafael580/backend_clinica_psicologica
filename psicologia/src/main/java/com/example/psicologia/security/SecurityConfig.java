@@ -7,16 +7,20 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
+@SuppressWarnings("deprecation")
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public void configure(HttpSecurity hhtpSec) throws  Exception{
-            hhtpSec.csrf().disable()
-                    .authorizeHttpRequests()
-                    .antMatchers(HttpMethod.GET,"/sessao")
-                    .permitAll().anyRequest().authenticated().and().cors();
-            hhtpSec.addFilterBefore(new SecurityFilter(), UsernamePasswordAuthenticationFilter.class);
-    }
+    public void configure(HttpSecurity httpSec) throws Exception {
+    // end point liberado
+        httpSec.csrf().disable()
+                .authorizeHttpRequests()
+                .antMatchers(HttpMethod.POST, "/usuario/login").permitAll()
+                .antMatchers(HttpMethod.GET, "/usuario").permitAll()
+                .antMatchers(HttpMethod.POST, "/usuario").permitAll()
+                .antMatchers(HttpMethod.PUT, "/usuario/id").permitAll()
+                .antMatchers(HttpMethod.DELETE, "/usuario/id").permitAll();
+
+	}
 }
