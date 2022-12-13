@@ -59,6 +59,9 @@ function sessoesDupla(){
     .then((retorno)=>{
         console.log(retorno)
     })
+
+
+    
 }
 
 function sessoesGrupo(){
