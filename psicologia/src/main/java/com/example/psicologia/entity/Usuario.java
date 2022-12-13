@@ -17,13 +17,15 @@ public class Usuario   implements Serializable {
     private Long id;
     private String nome;
     private String senha;
+    private String email;
 
     public Usuario(){}
 
-    public Usuario(Long id, String nome, String senha) {
+    public Usuario(Long id, String nome, String senha,String email) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
+        this.email  =email;
     }
 
     public Long getId() {
@@ -40,6 +42,14 @@ public class Usuario   implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getSenha() {
