@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/paciente")
+@CrossOrigin("*")
 public class PacienteController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class PacienteController {
         return ResponseEntity.ok().body(pacienteService.pegarUm(id));
     }
 
-    @PostMapping
+    @PostMapping("/criar")
     public ResponseEntity<Paciente> criarUmPaciente(@RequestBody Paciente paciente){
         return ResponseEntity.ok().body(pacienteService.criarPaciente(paciente));
     }

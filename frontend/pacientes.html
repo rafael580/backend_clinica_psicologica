@@ -15,7 +15,7 @@
             <div class="cabecalhoMenu">
                 <p>Bem Vindo(a),</p>
                 <span>Dr Rafael</span>
-                <button>Sair</button>
+                <button><a href="index.html">Sair</a></button>
             </div>
             <div class="dashboardMenu">
                 <p ><a href="totalPacientes.html" class="cor">Dashboard </a></p>
@@ -62,10 +62,11 @@
     <div class="login">
         <div class="container">
             <h1 class="formTitulo">Cadastro do Paciente</h1>
-            <form action="" method="get" class="formularioLogin">
+            <form action="" method="post" class="formularioLogin">
                 <input class="loginInput" id="nomeCadastro" type="text" placeholder="Nome" required>
                 <input class="loginInput" type="date" id="dataCadastro" placeholder="Data de Nacimento" required>
                 <input class="loginInput" type="text" id="cpfCadastro" placeholder="CPF" required>
+                <input class="loginInput" type="text" id="enderecoCadastro" placeholder="endereco" required>
                 <select class="loginInput"  id="generoCadastro" name="" id="" class="lista">
                     <option value="Masculino">Masculino</option>
                     <option value="Feminino">Feminino</option>
@@ -76,7 +77,7 @@
                 <input class="loginInput" type="text" id="telefoneCadastro" placeholder="Telefone" required>
                 <div class="divLoginButtom"> 
                     <button class="LoginButtomCancelar" onclick="fecharCadastro()">Cancelar</button>
-                    <button class="LoginButtom" onclick="salvarCadastro()">Salvar</button>
+                    <button type="submit" class="LoginButtom" onclick="salvarCadastro()">Salvar</button>
                 </div>
             </form>  
         </div>
@@ -86,9 +87,10 @@
 <div class="login1">
     <div class="container1">
         <h1 class="formTitulo1">Editar do Paciente</h1>
-        <form action="" method="get" class="formularioLogin">
+        <form action="" method="post" class="formularioLogin">
             <input class="loginInput1" id="nomeCadastro1" type="text" placeholder="Nome" required>
                 <input class="loginInput1" type="date" id="dataCadastro1" placeholder="Data de Nacimento" required>
+                <input class="loginInput" type="text" id="enderecoCadastro1" placeholder="endereco" required>
             <input class="loginInput1" type="text" id="cpfCadastro1" placeholder="CPF" required>
             <select class="loginInput1" name="" id="" class="lista">
                 <option value="Masculino">Masculino</option>

@@ -78,14 +78,15 @@ function aparecerEditar(id){
 
 function salvarCadastro(){
 
-    const nome = document.querySelector("#nomeCadastro")
-    const dataNascimento = document.querySelector("#dataCadastro")
-    const cpf = document.querySelector("#cpfCadastro")
-    const genero = document.querySelector("#generoCadastro")
-    const estado = document.querySelector("#estadoCadastro")
-    const municipio = document.querySelector("#municipioCadastro")
-    const email = document.querySelector("#emailCadastro")
-    const telefone = document.querySelector("#telefoneCadastro")
+    const Inome = document.querySelector("#nomeCadastro")
+    const IdataNascimento = document.querySelector("#dataCadastro")
+    const Icpf = document.querySelector("#cpfCadastro")
+    const Iendereco = document.querySelector("#enderecoCadastro")
+    const Igenero = document.querySelector("#generoCadastro")
+    const Iestado = document.querySelector("#estadoCadastro")
+    const Imunicipio = document.querySelector("#municipioCadastro")
+    const Iemail = document.querySelector("#emailCadastro")
+    const Itelefone = document.querySelector("#telefoneCadastro")
 
     const valor = 0
     if(genero.value=="masculino"){
@@ -94,9 +95,9 @@ function salvarCadastro(){
     else{
         valor=2
     }
-    const url = `http://localhost:8080/paciente`
+    
 
-    fetch(url,
+    fetch("http://localhost:8080/paciente",
     {
         headers: {
             "Accept": "application/json",
@@ -104,28 +105,22 @@ function salvarCadastro(){
         },
         method: "POST",
         body: JSON.stringify({
-            "nome": nome.value,
-            "dataNascimento": dataNascimento.value,
-            "cpf": cpf.value,
-            "email": email.value,
-            "cidade": municipio.value,
-            "estado": estado.value,
-            "telefone": telefone.value,
-            "genero": {
-                "id":valor
+            nome: Inome.value,
+            dataNascimento: IdataNascimento.value,
+            cpf: Icpf.value,
+            endereco: Iendereco.value,
+            email: Iemail.value,
+            cidade: Imunicipio.value,
+            stado: Iestado.value,
+            telefone: Itelefone.value,
+            genero:{
+                id:valor
             }
         })
     }) 
-    .then(function (res) { 
-        if(res.ok) {
-            exibirAlerta(); 
-            fecharCadastro()
-          };
-    })
-    .catch(function (res) { console.log(res)})  
-
-
 }
+
+
 function salvarEditar(){
     fecharEditar()
 }
