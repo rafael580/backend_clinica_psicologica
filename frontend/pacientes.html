@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/pacientesstyle.css">
+    <link rel="stylesheet" href="style/cadastroPaciente.css">
     <title>Pacientes</title>
 </head> 
 <body>
@@ -27,7 +28,7 @@
             <div class="cabecalhoPesquisa">
                 <span class="titulotabelaPacientes">Meus Pacientes</span>
                 <input type="text" placeholder="Pesquisar" class="pesquisartabela">
-                <button class="botaotabela"> Novo Paciente</button>
+                <button class="botaotabela" onclick="aparecerCadastro()"> Novo Paciente</button>
             </div>
             <div class="corpoTabela">
                 <table>
@@ -57,5 +58,46 @@
         </div>
     </div>
     <script src="js/pacientes.js"></script>
+    <!-- CADASTRO PACIENTE  -->
+    <div class="login">
+        <div class="container">
+            <h1 class="formTitulo">Cadastro do Paciente</h1>
+            <form action="" method="get" class="formularioLogin">
+                <input class="loginInput" type="text" placeholder="Nome" required>
+                <input class="loginInput" type="date" placeholder="Data de Nacimento" required>
+                <input class="loginInput" type="text" placeholder="CPF" required>
+                <input class="loginInput" type="text" placeholder="Genero" required>
+                <input class="loginInput" type="text" placeholder="Endereco" required>
+                <input class="loginInput" type="email" placeholder="E-mail" required>
+                <input class="loginInput" type="text" placeholder="Telefone" required>
+                <div class="divLoginButtom"> 
+                    <button class="LoginButtomCancelar" onclick="fecharCadastro()">Cancelar</button>
+                    <button class="LoginButtom" onclick="salvarCadastro()">Salvar</button>
+                </div>
+            </form>  
+        </div>
+    </div>
+<!-- EDITAR PACIENTE  -->
+
+<div class="login1">
+    <div class="container1">
+        <h1 class="formTitulo1">Editar do Paciente</h1>
+        <form action="" method="get" class="formularioLogin">
+            <input class="loginInput1" type="text" placeholder="Nome" required>
+            <input class="loginInput1" type="date" placeholder="Data de Nacimento" required>
+            <input class="loginInput1" type="text" placeholder="CPF" required>
+            <input class="loginInput1" type="text" placeholder="Genero" required>
+            <input class="loginInput1" type="text" placeholder="Endereco" required>
+            <input class="loginInput1" type="email" placeholder="E-mail" required>
+            <input class="loginInput1" type="text" placeholder="Telefone" required>
+            <div class="divLoginButtom1"> 
+                <button class="LoginButtomCancelar1" onclick="fecharEditar()">Cancelar</button>
+                <button class="LoginButtom1" onclick="salvarEditar()">Salvar</button>
+            </div>
+        </form>  
+    </div>
+</div>
+
+
 </body>
 </html>

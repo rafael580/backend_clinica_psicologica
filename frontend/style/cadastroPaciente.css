@@ -2,16 +2,23 @@
     font-family: sans-serif;
 }
 .login{
-    display: flex;
-    justify-content: center;
+    background-color: #00000055;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    display: none;
+    justify-content: center;  
     align-items: center;
     height: 100vh;
+    z-index: 999;
 }
 .container{
+    background-color: #fff;
     padding: 16px;
     width: 440px;
     height: 449px;
-    box-shadow: 10px 10px 10px rgb(219, 202, 202);
+    box-shadow: 10px 10px 10px #666;
     border-radius: 10px;
 }
 .formTitulo{
@@ -58,6 +65,82 @@
     display:flex;
 }
 .LoginButtomCancelar{
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    padding: 16px 32px;
+    color: #fff;
+    display:flex;
+}
+
+
+
+
+.login1{
+    background-color: #00000055;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    display: none;
+    justify-content: center;  
+    align-items: center;
+    height: 100vh;
+    z-index: 999;
+}
+.container1{
+    background-color: #fff;
+    padding: 16px;
+    width: 440px;
+    height: 449px;
+    box-shadow: 10px 10px 10px #666;
+    border-radius: 10px;
+}
+.formTitulo1{
+    text-align: center;
+    color: #6813d4;
+    font-family: sans-serif;
+}
+.formSubTitulo1{
+    color: #6813d4;
+    font-family: sans-serif;
+}
+.paragrafoLogin1{
+    color: #aaa;
+    font-family: sans-serif;
+}
+.loginInput1{
+    width: 90%;
+    padding: 10px;
+    display: block;
+    margin-top: 5px;
+    border: 1px solid #333;
+    border-radius: 6px;
+}
+.loginWrapper1{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.LoginCriarConta1{
+    text-align: center;
+}
+.divLoginButtom1{
+    display: flex;
+    justify-content: flex-end;
+}
+.LoginButtom1{
+    margin: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: #6813d4;;
+    padding: 16px 32px;
+    color: #fff;
+    display:flex;
+}
+.LoginButtomCancelar1{
     margin: 5px;
     border: none;
     border-radius: 10px;

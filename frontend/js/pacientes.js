@@ -31,7 +31,7 @@ const tabelaInicial = () =>{
             botaoExcluir.innerHTML = "excluir"
 
             botaoExcluir.setAttribute('onclick', "deletar(" + test.id + ")")
-            botaoEditar.setAttribute('onclick','editarPaciente('+test.id+')')
+            botaoEditar.setAttribute('onclick','aparecerEditar()')
 
             editarA.appendChild(botaoEditar)
             excluirE.appendChild(botaoExcluir)
@@ -55,7 +55,6 @@ const tabelaInicial = () =>{
 
 function deletar(id){
     const url = ` http://localhost:8080/paciente/${id}`;
-
     fetch(url,
         {
             headers: {
@@ -65,10 +64,38 @@ function deletar(id){
             method: "DELETE"
             
         }) 
-
 }
 function editarPaciente(id){
     console.log(id)
 }
+
+function aparecerCadastro(){
+    const aparecer = document.querySelector(".login")
+    aparecer.style.display = 'flex'
+}
+
+function salvarCadastro(){
+    
+}
+
+function fecharCadastro(){
+    const aparecer = document.querySelector(".login")
+    aparecer.style.display = 'none'
+}
+
+function aparecerEditar(){
+    const aparecer = document.querySelector(".login1")
+    aparecer.style.display = 'flex'
+}
+
+function salvarEditar(){
+    fecharEditar()
+}
+function fecharEditar(){
+    const aparecer = document.querySelector(".login1")
+    aparecer.style.display = 'none'
+}
+
+
 
 tabelaInicial()
