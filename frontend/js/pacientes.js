@@ -31,7 +31,7 @@ const tabelaInicial = () =>{
             botaoExcluir.innerHTML = "excluir"
 
             botaoExcluir.setAttribute('onclick', "deletar(" + test.id + ")")
-            botaoEditar.setAttribute('onclick','aparecerEditar()')
+            botaoEditar.setAttribute('onclick','aparecerEditar('+test.id+')')
 
             editarA.appendChild(botaoEditar)
             excluirE.appendChild(botaoExcluir)
@@ -46,7 +46,6 @@ const tabelaInicial = () =>{
             linha.appendChild(estado)
             linha.appendChild(cidade)
             linha.appendChild(botoes)
-
 
             corpoTabela.appendChild(linha)
 
@@ -65,37 +64,47 @@ function deletar(id){
             
         }) 
 }
-function editarPaciente(id){
-    console.log(id)
-}
 
 function aparecerCadastro(){
     const aparecer = document.querySelector(".login")
     aparecer.style.display = 'flex'
 }
 
-function salvarCadastro(){
-    
-}
-
-function fecharCadastro(){
-    const aparecer = document.querySelector(".login")
-    aparecer.style.display = 'none'
-}
-
-function aparecerEditar(){
+function aparecerEditar(id){
     const aparecer = document.querySelector(".login1")
     aparecer.style.display = 'flex'
 }
 
+
+function salvarCadastro(){
+
+    const nome = document.querySelector("#nomeCadastro")
+    const dataNascimento = document.querySelector("#dataCadastro")
+    const cpf = document.querySelector("#cpfCadastro")
+    const genero = document.querySelector("#generoCadastro")
+    const estado = document.querySelector("#estadoCadastro")
+    const municipio = document.querySelector("#municipioCadastro")
+    const email = document.querySelector("#emailCadastro")
+    const telefone = document.querySelector("#telefoneCadastro")
+
+    const url = `http://localhost:8080/paciente`
+
+
+
+    console.log("teste cadasto")
+}
 function salvarEditar(){
     fecharEditar()
 }
+
 function fecharEditar(){
     const aparecer = document.querySelector(".login1")
     aparecer.style.display = 'none'
 }
-
+function fecharCadastro(){
+    const aparecer = document.querySelector(".login")
+    aparecer.style.display = 'none'
+}
 
 
 tabelaInicial()
