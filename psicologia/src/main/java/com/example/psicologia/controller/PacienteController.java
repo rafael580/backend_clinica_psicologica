@@ -21,8 +21,8 @@ public class PacienteController {
     private PacienteRepository pacienteRepository;
 
     @GetMapping
-    public Page<Paciente> todos(PacienteFilter pacienteFilter, Pageable pageable){
-        return pacienteRepository.filtar(pacienteFilter,pageable);
+    public  ResponseEntity<Page<Paciente>> todos(PacienteFilter pacienteFilter, Pageable pageable){
+        return ResponseEntity.ok().body( pacienteRepository.filtar(pacienteFilter,pageable));
     }
 
     @GetMapping("/{id}")
