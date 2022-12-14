@@ -87,11 +87,44 @@ function salvarCadastro(){
     const email = document.querySelector("#emailCadastro")
     const telefone = document.querySelector("#telefoneCadastro")
 
+    const valor = 0
+    if(genero.value=="masculino"){
+        valor  = 1
+    }
+    else{
+        valor=2
+    }
     const url = `http://localhost:8080/paciente`
 
+    fetch(url,
+    {
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: JSON.stringify({
+            "nome": nome.value,
+            "dataNascimento": dataNascimento.value,
+            "cpf": cpf.value,
+            "email": email.value,
+            "cidade": municipio.value,
+            "estado": estado.value,
+            "telefone": telefone.value,
+            "genero": {
+                "id":valor
+            }
+        })
+    }) 
+    .then(function (res) { 
+        if(res.ok) {
+            exibirAlerta(); 
+            fecharCadastro()
+          };
+    })
+    .catch(function (res) { console.log(res)})  
 
 
-    console.log("teste cadasto")
 }
 function salvarEditar(){
     fecharEditar()
@@ -108,3 +141,9 @@ function fecharCadastro(){
 
 
 tabelaInicial()
+
+
+
+function exibirAlerta() {
+    alert("Cadastrado com sucesso!")
+}
