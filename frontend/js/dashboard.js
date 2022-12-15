@@ -76,7 +76,7 @@ const sessoesDupla = ()=>{
 const sessoesGrupo = ()=>{
 
     const sessoesAD = document.querySelector(".grupo")
-    const url = `http://localhost:8080/Dashborad/sessoesduplatotal`
+    const url = `http://localhost:8080/Dashborad/sessoesgrupototal`
     
     fetch(url)
     .then(response =>response.json())

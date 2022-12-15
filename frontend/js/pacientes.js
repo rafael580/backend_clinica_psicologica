@@ -52,7 +52,7 @@ const tabelaInicial = () =>{
         }))   
 }
 
-function deletar(id){
+async function deletar(id){
     const url = ` http://localhost:8080/paciente/${id}`;
     fetch(url,
         {
@@ -76,7 +76,7 @@ function aparecerEditar(id){
 }
 
 
-function salvarCadastro(){
+async function salvarCadastro(){
 
     const Inome = document.querySelector("#nomeCadastro")
     const IdataNascimento = document.querySelector("#dataCadastro")
@@ -95,28 +95,27 @@ function salvarCadastro(){
     else{
         valor=2
     }
-    
+    const criacao =  {
+        nome: Inome.value,
+        cpf: Icpf.value,
+        endereco: Iendereco.value,
+        email: Iemail.value,
+        cidade: Imunicipio.value,
+        stado: Iestado.value,
+        telefone: Itelefone.value,
+        genero:{
+            id:valor
+        }
+    }
 
     fetch("http://localhost:8080/paciente",
     {
-        headers: {
+        method: "POST",
+        headers: {  
             "Accept": "application/json",
             "Content-Type": "application/json"
         },
-        method: "POST",
-        body: JSON.stringify({
-            nome: Inome.value,
-            dataNascimento: IdataNascimento.value,
-            cpf: Icpf.value,
-            endereco: Iendereco.value,
-            email: Iemail.value,
-            cidade: Imunicipio.value,
-            stado: Iestado.value,
-            telefone: Itelefone.value,
-            genero:{
-                id:valor
-            }
-        })
+        body: JSON.stringify(criacao)
     }) 
 }
 
