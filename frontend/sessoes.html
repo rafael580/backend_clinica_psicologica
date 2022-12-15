@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/sessoesstyle.css">
+    <link rel="stylesheet" href="style/cadastroPaciente.css">
+    <link rel="stylesheet" href="style/editarSessao.css">
     <title>Pacientes</title>
 </head>
 <body>
@@ -27,7 +29,7 @@
             <div class="cabecalhoPesquisa">
                 <span class="titulotabelaPacientes">Meus Pacientes</span>
                 <input type="text" placeholder="Pesquisar" class="pesquisartabela">
-                <button class="botaotabela">Novo Paciente</button>
+                <button class="botaotabela" onclick="aparecerCadastro()">Novo Paciente</button>
             </div>
             <div class="corpoTabela">
                 <table>
@@ -48,6 +50,58 @@
             </div>
         </div>
     </div> 
+
+
+    <div class="login">
+        <div class="container">
+            <h1 class="formTitulo">Cadastro do sessão</h1>
+            <form action="" method="get" class="formularioLogin">
+                <input class="loginInput" type="text" placeholder="Pacientes" required>
+                <input class="loginInput" type="date" placeholder="Data de agendamento" required>
+                <input class="loginInput" type="text" placeholder="Tema Abordado" required>
+                <input class="loginInput" type="text" placeholder="Duração" required>
+                <input class="loginInput" type="text" placeholder="Tipo de sessão" required>
+                <div class="divLoginButtom"> 
+                    <button class="LoginButtomCancelar" onclick="fecharCadastro()">Cancelar</button>
+                    <button class="LoginButtom">Salvar</button>
+                </div>
+            </form>  
+        </div>
+    </div>
+
+
+    <div class="login1">
+        <div class="container1">
+            <h1 class="formTitulo1">Editar do sessão</h1>
+            <form action="" method="get" class="formularioLogin">
+                <input class="loginInput1" type="text" placeholder="Pacientes" required>
+                <input class="loginInput1" type="date" placeholder="Data de agendamento" required>
+                <input class="loginInput1" type="text" placeholder="Tema Abordado" required>
+                <input class="loginInput1" type="text" placeholder="Duração" required>
+                <input class="loginInput1" type="text" placeholder="Tipo de sessão" required>
+                <div class="divLoginButtom1"> 
+                    <button class="LoginButtomCancelar1" onclick="fecharEditar()">Cancelar</button>
+                    <button class="LoginButtom1">Salvar</button>
+                </div>
+            </form>  
+        </div>
+    </div>
+<div class="modal">
+    <div class="quadrado">
+        <h1 class="h1lista">Alterar status de sessão</h1>
+        <hr>
+        <select name="" id="" class="lista">
+            <option value="Agendado">Agendado</option>
+            <option value="Cancelado">Cancelado</option>
+            <option value="Atendido">Atendido</option>
+        </select>
+        <input class="observacao" type="text" required placeholder="observacao">
+        <div class="divLoginButtom"> 
+            <button class="LoginButtomCancelar"  onclick="fecharStatus()" >Cancelar</button>
+            <button class="LoginButtom">Salvar</button>
+        </div>
+    </div>
+</div>
     <script src="js/sessoes.js"></script>
 </body>
 </html>

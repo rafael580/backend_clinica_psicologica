@@ -1,10 +1,29 @@
 body{
     font-family: sans-serif;
 }
+
+.modal{
+    background-color: #00000055;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    display: none;
+    justify-content: center;  
+    align-items: center;
+    height: 100vh;
+    z-index: 999;
+}
+
+
 .quadrado{
-    width: 300px;
+    background-color: #fff;
+    padding: 16px;
+    width: 330px;
     height: 300px;
-    box-shadow: 10px 10px 10px rgb(219, 202, 202);
+    box-shadow: 10px 10px 10px #666;
+    border-radius: 10px;
+    margin: auto;
 }
 
 .h1lista{

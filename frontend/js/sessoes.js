@@ -29,7 +29,7 @@ const tabelaInicial = () =>{
             botaoEditar.innerHTML = "editar"
             botaoExcluir.innerHTML = "editar status"
 
-            botaoExcluir.setAttribute('onclick', "deletar(" + test.id + ")")
+            botaoExcluir.setAttribute('onclick', "aparecerStatus(" + test.id + ")")
             botaoEditar.setAttribute('onclick','aparecerEditar('+test.id+')')
 
             editarA.appendChild(botaoEditar)
@@ -51,3 +51,35 @@ const tabelaInicial = () =>{
         }))   
 }
 tabelaInicial()
+
+
+function aparecerCadastro(){
+    const aparecer = document.querySelector(".login")
+    aparecer.style.display = 'flex'
+  
+}
+
+function aparecerEditar(id){
+    const aparecer = document.querySelector(".login1")
+    aparecer.style.display = 'flex'
+}
+
+function aparecerStatus(){
+    const aparecer = document.querySelector(".modal")
+    aparecer.style.display = 'block'
+}
+
+
+function fecharCadastro(){
+    const aparecer = document.querySelector(".login")
+    aparecer.style.display = 'none'
+}
+function fecharEditar(){
+    const aparecer = document.querySelector(".login1")
+    aparecer.style.display = 'none'
+}
+
+function fecharStatus(){
+    const aparecer = document.querySelector(".modal")
+    aparecer.style.display = 'none'
+}
